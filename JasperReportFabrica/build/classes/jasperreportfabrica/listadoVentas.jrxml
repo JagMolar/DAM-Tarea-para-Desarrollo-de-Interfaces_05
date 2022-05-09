@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="977c92bb-1640-4ea5-8e35-abe468716882">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT Descripcion,detalle_pedidos.ID_Articulo, ID_Pedido, Unidades, detalle_pedidos.Precio
+FROM detalle_pedidos, articulos
+WHERE articulos.ID_Articulo = detalle_pedidos.ID_Articulo
+ORDER BY ID_Articulo ASC]]>
+	</queryString>
+	<field name="Descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_Articulo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_Pedido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Unidades" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="unidades_totales" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Unidades}]]></variableExpression>
+	</variable>
+	<group name="Articulo">
+		<groupExpression><![CDATA[$F{Descripcion}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="30" width="555" height="20" backcolor="#66CCFF" uuid="69085b0c-106e-4f9e-befa-0954696b79fd"/>
+				</frame>
+				<staticText>
+					<reportElement x="0" y="30" width="100" height="20" uuid="dac201f9-5503-4322-b602-3d5d63d4ce4e"/>
+					<textElement>
+						<font fontName="Century Gothic" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UNIDADES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="30" width="100" height="20" uuid="cc3e0184-af59-42f7-b184-21825f06b581"/>
+					<textElement>
+						<font fontName="Century Gothic" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PRECIO]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="80" y="0" width="405" height="20" uuid="4cdc070c-be86-46d4-9134-709994dc6239"/>
+					<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="80" height="20" uuid="81302366-df52-4a27-813b-02ca084eb5bc"/>
+					<textElement>
+						<font fontName="Century Gothic" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DESCRIPCIÓN: ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<textField>
+					<reportElement x="455" y="0" width="100" height="20" uuid="802131b1-5f9a-4d9a-806a-c91d3ac3fd60"/>
+					<textFieldExpression><![CDATA[$V{unidades_totales}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="337" y="0" width="118" height="20" uuid="304197c0-df74-404a-977c-1b5a89a8a2a8"/>
+					<textElement>
+						<font fontName="Century Gothic" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CANTIDAD TOTAL:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="127" y="10" width="287" height="33" backcolor="#3399FF" uuid="fe1a3a13-602f-40a7-a063-dce94ead9782"/>
+				<textElement>
+					<font fontName="Century Gothic" size="18" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE UNIDADES VENDIDAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="1" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="831c09c4-b25d-4aa3-b529-dfa0ce68a3b7"/>
+				<textFieldExpression><![CDATA[$F{Unidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="69cb602b-62ef-46ac-96cf-bf7b206e31d1"/>
+				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="275" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="52" y="12" width="451" height="250" uuid="10d4dcdd-a5de-4ecb-a3d6-84236ce7d6a5"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{Descripcion}]]></keyExpression>
+					<valueExpression><![CDATA[$V{unidades_totales}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>
