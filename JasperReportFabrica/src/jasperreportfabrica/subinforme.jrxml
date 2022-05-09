@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="370" pageHeight="842" columnWidth="370" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="850a2662-3ab2-43c0-aafa-0bff79fe3d30">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_Cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Nombre,Direccion,Ciudad,clientes.ID_Cliente AS IDCliente,pedidos.ID_Pedido AS IDPedidos,Fecha_Pedido AS Fecha, Unidades, Precio
+FROM clientes,pedidos, detalle_pedidos
+WHERE clientes.ID_Cliente = $P{ID_Cliente} AND clientes.ID_Cliente = pedidos.ID_Cliente
+ORDER BY pedidos.ID_Pedido ASC]]>
+	</queryString>
+	<field name="Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDCliente" class="java.lang.Integer"/>
+	<field name="IDPedidos" class="java.lang.Integer"/>
+	<field name="Fecha" class="java.sql.Timestamp"/>
+	<field name="Unidades" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="104" y="12" width="154" height="24" backcolor="#3399FF" uuid="1a06ed74-63f3-459f-b732-06aa205f2e5a"/>
+				<textElement>
+					<font fontName="Century Gothic" size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO PEDIDOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="2" width="370" height="20" backcolor="#33CCFF" uuid="b4c4a2e6-fd61-47b8-ba7a-98b43b81ec85"/>
+			</frame>
+			<staticText>
+				<reportElement x="34" y="2" width="100" height="20" uuid="990ab312-b6ba-454c-bd75-417f1f36ae1f"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="2" width="100" height="20" uuid="11fc0bc8-3631-43f5-ad27-f4c2407a6b64"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDADES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="2" width="100" height="20" uuid="3f1fa210-158c-49fc-9e77-f31be99bd517"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="0" width="100" height="20" uuid="ee4310d8-3aab-4094-8261-3ebf812d4f97"/>
+				<textFieldExpression><![CDATA[$F{IDPedidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="100" height="20" uuid="d7713dd9-24b1-4c99-8ae2-0dd8dadbacb1"/>
+				<textFieldExpression><![CDATA[$F{Unidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="0" width="100" height="20" uuid="580fd264-4123-4ef7-a877-f2e5338935e3"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
